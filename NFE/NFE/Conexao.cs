@@ -29,7 +29,7 @@ namespace AcessoBanco.Conexao
                 return false;
             }
         }
-        public bool VerificaAcesso(string login, string senha)
+        public bool VerificaAcessoUsuario(string login, string senha)
         {
             try
             {
@@ -126,6 +126,27 @@ namespace AcessoBanco.Conexao
                 return false;
                 throw;
             }
+        }
+
+        public void CriaTabelaNFE()
+        {
+        }
+        public void InsereNomeArquivo(string nomeArquivo)
+        {
+            AcessoBanco.Entidades entidade = new AcessoBanco.Entidades();
+            MySqlConnection conectar = ParametrosConexao.DadosConexao();
+            MySqlCommand cmd;
+
+            conectar.Open();
+            cmd = conectar.CreateCommand();
+            cmd.CommandText = "INSERT INTO ARQUIVOS(" + nomeArquivo + ")";
+            cmd.Parameters.AddWithValue("@nomeArquivo", entidade.Login);
+            cmd.Parameters.AddWithValue("@senha", entidade.Senha);
+            cmd.Parameters.AddWithValue("@dataCriacao", entidade.DataCriacao);
+            cmd.Parameters.AddWithValue("@dataModificacao", entidade.DataModificacao);
+            cmd.Parameters.AddWithValue("@ultimoAcesso", entidade.UltimoAcesso);
+            cmd.Parameters.AddWithValue("@ativo", entidade.Ativo);
+            cmd.ExecuteNonQuery();
         }
     }
 }

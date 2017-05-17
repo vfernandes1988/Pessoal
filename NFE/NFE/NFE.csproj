@@ -49,7 +49,8 @@
   <ItemGroup>
     <Compile Include="Conexao.cs" />
     <Compile Include="DadosConexao.cs" />
-    <Compile Include="Entidades.cs" />
+    <Compile Include="Entidades\Arquivo.cs" />
+    <Compile Include="Entidades\Entidades.cs" />
     <Compile Include="Informacoes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
