@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
-using AcessoBanco;
-using AcessoBanco.Conexao;
 
 namespace NFE
 {
@@ -13,26 +7,40 @@ namespace NFE
     {
         static void Main(string[] args)
         {
-            try
-            {
-                AcessoBanco.Conexao.Conexao conexao = new AcessoBanco.Conexao.Conexao();
-                bool verificarAcessoBanco = conexao.VerificaAcessoBanco();
+            var entidades = new Entidades.Autenticacao();
+            var conexaoBanco = new DAL.VerificacaoAcessoDAL();
+            var transacaoBanco = new DAL.TransacaoBancoDAL();
+            var acessoUsuario = new DAL.AcessoUsuario();
+            var listarArquivo = new DAL.ArquivoDAL();
+            MySqlConnection conectar = DAL.ParametrosConexao.DadosConexao();
+            bool verificarConexaoBanco = conexaoBanco.VerificaAcessoBanco();
 
-                string login = "vfernandes";
-                string senha = "1234";
-                string dataCriacao = DateTime.Now.ToLongDateString();
-                string dataModificao = DateTime.Now.ToLongDateString();
-                string ultimoAcesso = DateTime.Now.ToLongDateString();
-                int ativo = 1;
-                bool verificaAcesso = conexao.VerificaAcesso(login, senha);
-                if (verificaAcesso)
-                    conexao.Excluir(login, senha, dataCriacao, dataModificao, ultimoAcesso, ativo);
-            }
-            catch (Exception e)
+            if (verificarConexaoBanco)
             {
-                Console.WriteLine("Erro: " + e.Message);
+                Console.Write("\nDigite seu Usuário: ");
+                entidades.Usuario = Console.ReadLine();
+                Console.Write("\nDigite sua Senha: ");
+                entidades.Senha = Console.ReadLine();
+
+                bool verificarUsuario = acessoUsuario.VerificaAcesso(entidades.Usuario, entidades.Senha);
+                if (verificarUsuario)
+                {
+                    Console.Clear();
+                    Console.Write("\nO que deseja fazer ? ");
+                    Console.Write("\nO Digite o numero: 1 - Importar NFE Entrada ou 2 - Exportar NFE Entrada\n");
+                    string opcao = Console.ReadLine();
+                    if (opcao == "1")
+                        listarArquivo.ListarArquivo();
+                    else
+                    Console.Read();
+                }
+                else
+                {
+                    Console.WriteLine("Acesso Negado !");
+                }
             }
-            Console.Read();
+            conectar.Close();
+            Console.WriteLine("CONEXAO ENCERRADA");
         }
     }
 }

@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
+using System;
 
-namespace AcessoBanco
+namespace NFE.DAL
 {
     class InformacoesConexao
     {
 
-        public static MySqlConnection
-                 GetDBConnection(string host, int port, string database, string username, string password)
+        public static MySqlConnection GetDBConnection(string host, int port, string database, string username, string password)
         {
             // Connection String.
             String connectionstring = "Server=" + host + ";Database=" + database
@@ -20,6 +15,5 @@ namespace AcessoBanco
             MySqlConnection conexao = new MySqlConnection(connectionstring);
             return conexao;
         }
-
     }
 }

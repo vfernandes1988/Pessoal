@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NFE.Entidades
 {
-    class Arquivo
+    class ArquivoXML
     {
         public int Id { get; set; }
         public string NomeArquivo { get; set; }

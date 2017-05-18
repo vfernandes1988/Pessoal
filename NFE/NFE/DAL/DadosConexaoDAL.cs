@@ -1,6 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 
-namespace AcessoBanco
+namespace NFE.DAL
 {
     class ParametrosConexao
     {
@@ -8,7 +8,7 @@ namespace AcessoBanco
         {
             string host = "127.0.0.1";
             int port = 3306;
-            string database = "dados";
+            string database = "nfe";
             string username = "root";
             string password = "root";
 

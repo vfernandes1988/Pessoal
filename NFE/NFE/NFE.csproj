@@ -47,17 +47,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conexao.cs" />
-    <Compile Include="DadosConexao.cs" />
+    <Compile Include="DAL\AcessoDAL.cs" />
+    <Compile Include="DAL\ArquivoDAL.cs" />
+    <Compile Include="DAL\ConexaoBancoDAL.cs" />
+    <Compile Include="DAL\DadosConexaoDAL.cs" />
+    <Compile Include="DAL\TransacaoBancoDAL.cs" />
+    <Compile Include="DAL\VerificacaoAcessoDAL.cs" />
+    <Compile Include="Entidades\ArquivoXML.cs" />
     <Compile Include="Entidades\Arquivo.cs" />
-    <Compile Include="Entidades\Entidades.cs" />
-    <Compile Include="Informacoes.cs" />
+    <Compile Include="Entidades\Autenticacao.cs" />
+    <Compile Include="Entidades\BancoDados.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BLL\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
